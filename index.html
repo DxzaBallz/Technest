@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technest</title>
+    <title>CodeCast</title>
     <style>
         body {
             background-color: #fff;
@@ -183,9 +183,9 @@
     <div class="page" id="sign-in-page">
         <div class="form-container">
             <h2>Sign In</h2>
-            <input type="text" placeholder="Username" id="username">
-            <input type="password" placeholder="Password" id="password">
-            <button onclick="signIn()">Sign In</button>
+            <input type="text" placeholder="Username">
+            <input type="password" placeholder="Password">
+            <button>Sign In</button>
             <div class="link" onclick="showSignUpPage()">Don't have an account? Sign Up</div>
             <div class="link" onclick="continueAsGuest()">Continue as Guest</div>
         </div>
@@ -231,4 +231,71 @@
 
         startAnimation();
 
-       
+        let progress = 0;
+
+        function updateProgress() {
+            progress += 0.1;
+            if (progress > 1) {
+                progress = 1;
+            }
+            document.querySelector('.loading-circle').style.width = `${progress * 100}%`;
+        }
+
+        setInterval(() => {
+            updateProgress();
+        }, 100);
+
+        let progressShort = 0;
+
+        function updateProgressShort() {
+            progressShort += 0.1;
+            if (progressShort > 1) {
+                progressShort = 1;
+            }
+            document.querySelector('.loading-circle-short').style.width = `${progressShort * 100}%`;
+        }
+
+        setInterval(() => {
+            updateProgressShort();
+        }, 100);
+        setTimeout(() => {
+            document.querySelector('.win11-loading').style.display = 'none';
+        }, 3000);
+
+        function showSignInPage() {
+            document.getElementById('sign-in-page').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('sign-in-page').style.opacity = '1';
+            }, 100);
+            setTimeout(() => {
+                document.getElementById('logo').style.opacity = '0';
+            }, 500); // Make logo stay a bit more
+        }
+
+        function showSignUpPage() {
+            document.getElementById('sign-in-page').style.display = 'none';
+            document.getElementById('sign-in-page').style.opacity = '0';
+            document.getElementById('sign-up-page').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('sign-up-page').style.opacity = '1';
+            }, 100);
+        }
+
+        function continueAsGuest() {
+            alert('Continuing as guest...');
+            // Implement guest continuation logic here
+        }
+
+        setTimeout(() => {
+            document.getElementById('sign-in-page').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('sign-in-page').style.opacity = '1';
+            }, 100);
+            setTimeout(() => {
+                document.getElementById('logo').style.opacity = '0'; // Hide logo after showing the sign-in page
+            }, 500); // Make logo stay a bit more
+        }, 5000); // Show the sign-in page after 5 seconds instead of 3
+    </script>
+</body>
+
+</html>
